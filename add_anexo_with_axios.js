@@ -57,24 +57,17 @@ new Vue({
 /* Api's de anexos do contrato empresa */
 //Route::post('/contratos/empresa/anexo/add',  'Admin\AnexoController@apiAnexoContratoStore')->middleware('api_token');
 /* */
-// public function apiPost(Request $request)
-//     {   
-//         $checaDataEnvioDuplicada = AgendaContratoCobranca::where('contrato_id', $request->contrato_id)
-//                                                         ->whereDate('data_envio', $request->data_envio)->get(); 
-                                                      
-//         if ( count($checaDataEnvioDuplicada->toArray()) > 0)
-//         {
-//             return response()->json("Agendamento já efetuado para essa data!", 400);
-//         }        
-     
-//         if( $request['valor'] != '' ){
-//             $request['valor'] = valorToMysql($request->valor);
-
-//         }else{
-//             $request->valor = null;
-//         }
-
-//         $nova_agenda_cobranca = new AgendaContratoCobranca;
-//         $nova_agenda_cobranca->create($request->all());
-
-//     } 
+// public function apiAnexoContratoStore(Request $request)
+// {
+//     $contrato = Contrato::find($request->id);
+//     $dadosFormulario = $request->all();
+//     $nomeArquivo = rand(1,999) . '_'.$request->anexo->getClientOriginalName();
+//     $request->anexo->storeAs('/public/arquivos_contratos', $nomeArquivo, 'local'); // Ação de gravar
+//     $dadosFormulario['anexo'] = '/storage/arquivos_contratos/' . $nomeArquivo;
+   
+//     $contrato->anexos()->create([
+//         'nome' => $dadosFormulario['nome'],
+//         'anexo' => $dadosFormulario['anexo'],
+//         'data_envio' => $dadosFormulario['data_envio']  
+//     ]); 
+// }
