@@ -1,4 +1,3 @@
-
 // <form id="form_add_anexo" enctype="multipart/form-data">
 //     {{ csrf_field() }}
 //     <div class="form-group">
@@ -30,24 +29,24 @@ new Vue({
             api_token: "{!! env('API_KEY')!!}", 
     },
     methods:{
-            add_anexo: function() {
-                const config = { headers: { 'Content-Type': 'multipart/form-data' } };
-                let form = new FormData();
-                form.append("id",   $("#id").val());
-                form.append("nome", $("#nome").val());
-                form.append("data_envio", $("#data_envio").val());
-                form.append('anexo', document.querySelector('#anexo').files[0]);
-                form.append('api_token', this.api_token);
-                axios.post("/api/contratos/empresa/anexo/add", form ,config )
-                    .then(response => {
-                        this.get_anexos();
-                    })
-                    .catch(error => {
-                        console.log(error);
-                        alert("Ops! Não consegui gravar os dados!");
-                    });
+        add_anexo: function() {
+            const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+            let form = new FormData();
+            form.append("id",   $("#id").val());
+            form.append("nome", $("#nome").val());
+            form.append("data_envio", $("#data_envio").val());
+            form.append('anexo', document.querySelector('#anexo').files[0]);
+            form.append('api_token', this.api_token);
+            axios.post("/api/contratos/empresa/anexo/add", form ,config )
+                .then(response => {
+                    this.get_anexos();
+                })
+                .catch(error => {
+                    console.log(error);
+                    alert("Ops! Não consegui gravar os dados!");
+                });
 
-            },
+        },
     },
 });
 
